@@ -5,217 +5,234 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Установка приложений на iPhone</title>
     <style>
-        /* --- ВАШ СТИЛЬ (ПЕРЕМЕННЫЕ) --- */
-        :root {
-            --bg-color: #f5f5f7;       /* Цвет фона страницы */
-            --card-bg: #ffffff;        /* Цвет фона карточек */
-            --text-main: #1d1d1f;      /* Основной цвет текста */
-            --text-muted: #86868b;     /* Цвет подписей и шагов */
-            --accent-color: #0071e3;   /* Цвет кнопок и акцентов (Apple Blue) */
-            --accent-text: #ffffff;     /* Цвет текста на кнопках */
-            --radius-icon: 22%;        /* Скругление иконок приложений */
-            --radius-card: 16px;       /* Скругление блоков */
-            --main-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
-            font-family: var(--main-font);
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.4;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #000000;
+            color: #f5f5f7;
+            margin: 0;
             padding: 20px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 500px; /* Ограничение по ширине для мобильного интерфейса */
-        }
-
-        /* Шапка */
-        .header {
-            text-align: center;
-            margin-bottom: 24px;
-            padding-top: 10px;
-        }
-
-        .header h1 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .header p {
-            color: var(--text-muted);
-            font-size: 15px;
-        }
-
-        /* Сетка приложений */
-        .apps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-            gap: 16px;
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: var(--radius-card);
-            margin-bottom: 24px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-
-        .app-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
-            text-decoration: none;
-            color: inherit;
-            cursor: pointer;
-            transition: transform 0.1s ease;
+            justify-content: center;
+            min-height: 100vh;
+            box-sizing: border-box;
         }
-
-        .app-item:active {
-            transform: scale(0.95);
+        .container {
+            max-width: 450px;
+            width: 100%;
+            background: #1c1c1e;
+            padding: 25px;
+            border-radius: 24px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            box-sizing: border-box;
+            margin: 20px 0;
+            animation: fadeInUp 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
-
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .header { text-align: center; margin-bottom: 25px; }
         .app-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: var(--radius-icon);
-            object-fit: cover;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin-bottom: 8px;
+            width: 80px; height: 80px; border-radius: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5); margin-bottom: 15px;
+        }
+        h1 { font-size: 24px; margin: 0 0 8px 0; }
+        .subtitle { color: #8e8e93; font-size: 14px; margin: 0; }
+        #buttons-container { margin-bottom: 35px; }
+
+        .btn-install {
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; padding: 12px 16px;
+            border-radius: 14px; font-weight: 600; font-size: 16px;
+            margin-bottom: 12px; transition: filter 0.2s, transform 0.1s;
+        }
+        .btn-install:last-child { margin-bottom: 0; }
+        .btn-install:hover { filter: brightness(1.1); }
+        .btn-install:active { transform: scale(0.98); }
+        .btn-icon {
+            width: 24px; height: 24px; border-radius: 7px;
+            margin-right: 10px; object-fit: cover; flex-shrink: 0;
         }
 
-        .app-name {
-            font-size: 12px;
-            font-weight: 500;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+        /* Цвета кнопок */
+        .btn-max { background-color: #002df1; color: #ffffff; }
+        .btn-vk { background-color: #0077ff; color: #ffffff; }
+        .btn-avito { background-color: #ffffff; color: #000000; }
+        .btn-sber { background-color: #21a038; color: #ffffff; }
+        .btn-tbank { background-color: #ffdd2d; color: #000000; }
+        .btn-alfa { background-color: #ef3124; color: #ffffff; }
+        .btn-mail { background-color: #005ffc; color: #ffffff; }
+        .btn-ypay {
+            background-color: #000000; color: #ffffff;
+            border: 1px solid #ff3333; box-shadow: 0 0 8px rgba(255, 51, 51, 0.2);
         }
+        .btn-ozon { background-color: #005bff; color: #ffffff; }
+        .btn-wb { background-color: #cb11ab; color: #ffffff; }
+        .btn-chatgpt { background-color: #ffffff; color: #000000; border: 1px solid #000000; }
+        .btn-vk-live { background-color: #ff283e; color: #ffffff; }
+        .btn-happ { background-color: #e5e5ea; color: #1a1a1a; }
+        .btn-vtb { background-color: #0a2a73; color: #ffffff; }
+        .btn-spotify { background-color: #1db954; color: #000000; }
+        .btn-vk-clips { background-color: #cc41f3; color: #ffffff; }
+        .btn-vk-music { background-color: #9b47e0; color: #ffffff; }
+        .btn-vk-video { background-color: #ff2333; color: #ffffff; }
+        .btn-vk-messenger { background-color: #00c2ff; color: #ffffff; }
 
-        /* Блок инструкции */
-        .instruction-section {
-            background: var(--card-bg);
-            padding: 24px;
-            border-radius: var(--radius-card);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        /* --- СТИЛИ ИНСТРУКЦИИ (в твоём стиле) --- */
+        .instruction-wrapper {
+            width: 100%;
+            border-top: 1px solid #38383a;
+            padding-top: 22px;
+            margin-top: 20px;
         }
-
-        .instruction-section h2 {
-            font-size: 20px;
+        .instruction-header {
+            margin-bottom: 18px;
+        }
+        .instruction-title {
+            font-size: 19px;
             font-weight: 700;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #e5e5ea;
-            padding-bottom: 10px;
+            margin: 0 0 6px 0;
+            line-height: 1.2;
         }
-
-        .step {
-            margin-bottom: 24px;
+        .instruction-subtitle {
+            color: #8e8e93;
+            font-size: 14px;
+            margin: 0;
         }
-
-        .step:last-child {
+        .steps-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .step-item {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+        .step-item:last-child {
             margin-bottom: 0;
         }
-
-        .step-num {
-            font-size: 14px;
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #2c2c2e;
+            color: #0a84ff;
             font-weight: 700;
-            color: var(--accent-color);
-            text-transform: uppercase;
-            margin-bottom: 4px;
-            display: block;
+            font-size: 13px;
+            flex-shrink: 0;
         }
-
-        .step-title {
-            font-size: 17px;
+        .step-content h3 {
+            margin: 0 0 5px 0;
+            font-size: 16px;
             font-weight: 600;
-            margin-bottom: 8px;
+            color: #f5f5f7;
         }
-
-        .step-text {
-            font-size: 15px;
-            color: var(--text-main);
-            margin-bottom: 12px;
+        .step-content p {
+            margin: 0;
+            font-size: 14px;
+            color: #8e8e93;
+            line-height: 1.45;
         }
-
+        .step-image-wrapper {
+            margin-top: 12px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid #38383a;
+        }
         .step-image {
             width: 100%;
-            border-radius: 12px;
-            border: 1px solid #e5e5ea;
             display: block;
+            object-fit: contain;
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-
-    <!-- Шапка сайта -->
-    <header class="header">
-        <h1>Установка приложений</h1>
-        <p>Выберите приложение для вашей iOS системы</p>
-    </header>
-
-    <!-- Сетка с иконками приложений -->
-    <div class="apps-grid">
-        <!-- Приложение 1 -->
-        <a href="ССЫЛКА_НА_СКАЧИВАНИЕ_1" class="app-item">
-            <!-- МЕСТО ДЛЯ ВАШЕГО ФОТО (Иконка) -->
-            <img src="app1.png" alt="MAX" class="app-icon">
-            <div class="app-name">MAX</div>
-        </a>
-
-        <!-- Приложение 2 -->
-        <a href="ССЫЛКА_НА_СКАЧИВАНИЕ_2" class="app-item">
-            <img src="app2.png" alt="Т-Банк" class="app-icon">
-            <div class="app-name">Т-Банк</div>
-        </a>
-
-        <!-- Приложение 3 -->
-        <a href="ССЫЛКА_НА_СКАЧИВАНИЕ_3" class="app-item">
-            <img src="app3.png" alt="СБЕР" class="app-icon">
-            <div class="app-name">СБЕР</div>
-        </a>
-
-        <!-- Приложение 4 -->
-        <a href="ССЫЛКА_НА_СКАЧИВАНИЕ_4" class="app-item">
-            <img src="app4.png" alt="Авито" class="app-icon">
-            <div class="app-name">Авито</div>
-        </a>
-    </div>
-
-    <!-- Раздел с пошаговой инструкцией -->
-    <section class="instruction-section">
-        <h2>Инструкция по установке</h2>
-
-        <!-- Шаг 1 -->
-        <div class="step">
-            <span class="step-num">Шаг 1</span>
-            <div class="step-title">Запустите установку</div>
-            <p class="step-text">Откройте этот сайт строго в браузере Safari, нажмите на иконку нужного приложения выше и подтвердите системный запрос.</p>
-            <!-- МЕСТО ДЛЯ ВАШЕГО ФОТО (Скриншот шага) -->
-            <img src="step1.jpg" alt="Иллюстрация шага 1" class="step-image">
+    <div class="container">
+        <div class="header">
+            <img src="logo.png" class="app-icon" alt="App Icon" onerror="this.style.display='none'">
+            <h1>Установка приложений</h1>
+            <p class="subtitle">Выберите приложение для iOS</p>
         </div>
 
-        <!-- Шаг 2 -->
-        <div class="step">
-            <span class="step-num">Шаг 2</span>
-            <div class="step-title">Ожидайте загрузку</div>
-            <p class="step-text">Подождите 1–2 минуты, пока иконка приложения появится на домашнем экране вашего iPhone.</p>
-            <img src="step2.jpg" alt="Иллюстрация шага 2" class="step-image">
+        <div id="buttons-container">
+            <!-- Кнопки A–J (1–10) -->
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/max.plist" class="btn-install btn-max" data-letter="A">
+                <img src="MAX logo.png" class="btn-icon" alt=""> Установить MAX
+            </a>
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/vk.plist" class="btn-install btn-vk" data-letter="B">
+                <img src="VK logo.png" class="btn-icon" alt=""> Установить VK
+            </a>
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/avito.plist" class="btn-install btn-avito" data-letter="C">
+                <img src="Avito logo.jpg" class="btn-icon" alt=""> Установить Авито
+            </a>
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/sber.plist" class="btn-install btn-sber" data-letter="D">
+                <img src="SBER logo.jpg" class="btn-icon" alt=""> Установить СБЕР
+            </a>
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/tbank.plist" class="btn-install btn-tbank" data-letter="E">
+                <img src="Tbank logo.jpg" class="btn-icon" alt=""> Установить Т-Банк
+            </a>
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/alfa.plist" class="btn-install btn-alfa" data-letter="F">
+                <img src="Alfa Bank logo.jpg" class="btn-icon" alt=""> Установить Альфа-Банк
+            </a>
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/mail.plist" class="btn-install btn-mail" data-letter="G">
+                <img src="Mail logo.jpg" class="btn-icon" alt=""> Установить Почта Mail
+            </a>
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/ypay.plist" class="btn-install btn-ypay" data-letter="H">
+                <img src="Yandex Pay logo.png" class="btn-icon" alt=""> Установить Яндекс Пэй
+            </a>
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/ozon.plist" class="btn-install btn-ozon" data-letter="I">
+                <img src="ozon bank logo.jpg" class="btn-icon" alt=""> Установить Ozon Банк
+            </a>
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/wb.plist" class="btn-install btn-wb" data-letter="J">
+                <img src="WB logo.png" class="btn-icon" alt=""> Установить Wildberries
+            </a>
+
+            <!-- Кнопки K–S (11–19) -->
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/original/refs/heads/main/chatgpt.plist" class="btn-install btn-chatgpt" data-letter="K">
+                <img src="ChatGPT logo.png" class="btn-icon" alt=""> Установить ChatGPT
+            </a>
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/original/refs/heads/main/vk_live.plist" class="btn-install btn-vk-live" data-letter="L">
+                <img src="VK Live logo.png" class="btn-icon" alt=""> Установить VK Видео Live
+            </a>
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/original/refs/heads/main/happ.plist" class="btn-install btn-happ" data-letter="M">
+                <img src="Happ logo.png" class="btn-icon" alt=""> Установить Happ
+            </a>
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/original/refs/heads/main/vtb.plist" class="btn-install btn-vtb" data-letter="N">
+                <img src="VTB logo.png" class="btn-icon" alt=""> Установить ВТБ
+            </a>
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/original/refs/heads/main/spotify.plist" class="btn-install btn-spotify" data-letter="O">
+                <img src="Spotify logo.png" class="btn-icon" alt=""> Установить Spotify
+            </a>
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/original/refs/heads/main/vk_clips.plist" class="btn-install btn-vk-clips" data-letter="P">
+                <img src="VK Clips logo.png" class="btn-icon" alt=""> Установить VK Клипы
+            </a>
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/original/refs/heads/main/vk_music.plist" class="btn-install btn-vk-music" data-letter="Q">
+                <img src="VK Music logo.png" class="btn-icon" alt=""> Установить VK Music
+            </a>
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/original/refs/heads/main/vk_video.plist" class="btn-install btn-vk-video" data-letter="R">
+                <img src="VK Video logo.png" class="btn-icon" alt=""> Установить VK Видео
+            </a>
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/original/refs/heads/main/vk_messenger.plist" class="btn-install btn-vk-messenger" data-letter="S">
+                <img src="VK Messenger logo.png" class="btn-icon" alt=""> Установить VK Messenger
+            </a>
         </div>
 
-    </section>
-</div>
-
-</body>
-</html>
+        <!-- ИНСТРУКЦИЯ (полностью дописана) -->
+        <div class="instruction-wrapper">
+            <div class="instruction-header">
+                <h2 class="instruction-title">Как установить приложение</h2>
+                <p class="instruction-subtitle">Пошаговая инструкция для iPhone (только Safari)</p>
+            </div>
+            <ul class="steps-list">
+                <!-- Шаг 1 -->
+                <li class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Откройте страницу в Safari</h3>
+                        <p>Установка работает только в браузере Safari на iOS. Не используйте Chrome
