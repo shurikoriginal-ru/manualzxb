@@ -142,6 +142,18 @@
         display: block;
         margin: 0 auto;
       }
+
+      /* Желтая пометка под картинкой */
+      .step-note {
+        margin-top: 16px;
+        background: var(--warning-soft);
+        border: 1px solid var(--warning);
+        border-radius: 16px;
+        padding: 16px;
+        color: var(--warning);
+        font-size: 14px;
+        line-height: 1.5;
+      }
     </style>
   </head>
   <body>
@@ -180,9 +192,12 @@
         <!-- Шаг 4 -->
         <div class="step-card">
           <div class="step-number">Шаг 4</div>
-          <h3 class="step-title">Название четвертого шага</h3>
-          <p class="step-text">Текст указания для четвертого шага инструкции.</p>
+          <h3 class="step-title">Выполните "Выход"</h3>
+          <p class="step-text">Листайте в самый низ, нажмите кнопку «Выйти».</p>
           <img class="step-image" src="step4.png" alt="Шаг 4" />
+          <div class="step-note">
+            Это выход только из магазина приложений App Store. Вы НЕ ВЫХОДИТЕ из своего iCloud. Данные вашего телефона не затрагиваются.
+          </div>
         </div>
 
         <!-- Шаг 5 -->
