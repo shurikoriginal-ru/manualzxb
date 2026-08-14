@@ -127,23 +127,20 @@
 
       .step-text {
         color: var(--muted);
-        margin: 0;
+        margin: 0 0 16px 0;
         font-size: 15px;
         line-height: 1.5;
       }
 
-      .step-text strong {
-        color: var(--text);
-      }
-
-      .warning-block {
-        margin-top: 12px;
-        background: var(--warning-soft);
-        border: 1px solid var(--warning);
-        border-radius: 12px;
-        padding: 12px;
-        color: var(--warning);
-        font-size: 14px;
+      .step-image {
+        width: 100%;
+        max-height: 450px;
+        border-radius: 16px;
+        object-fit: contain;
+        background: var(--panel-2);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        display: block;
+        margin: 0 auto;
       }
     </style>
   </head>
@@ -161,89 +158,97 @@
           <div class="step-number">Шаг 1</div>
           <h3 class="step-title">Откройте настройки</h3>
           <p class="step-text">Найдите на экране вашего iPhone иконку с надписью «Настройки». Перейдите в Настройки.</p>
+          <img class="step-image" src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='500' height='300'><rect width='100%' height='100%' fill='%23101213'/></svg>" alt="Шаг 1" />
         </div>
 
         <!-- Шаг 2 -->
         <div class="step-card">
           <div class="step-number">Шаг 2</div>
-          <h3 class="step-title">Переход по ссылке</h3>
-          <p class="step-text">Откройте стандартный браузер <strong>Safari</strong> на вашем iPhone и перейдите на страницу загрузки полученного приложения.</p>
+          <h3 class="step-title">Название второго шага</h3>
+          <p class="step-text">Текст указания для второго шага инструкции.</p>
+          <img class="step-image" src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='500' height='300'><rect width='100%' height='100%' fill='%23101213'/></svg>" alt="Шаг 2" />
         </div>
 
         <!-- Шаг 3 -->
         <div class="step-card">
           <div class="step-number">Шаг 3</div>
-          <h3 class="step-title">Инициация загрузки</h3>
-          <p class="step-text">Нажмите на кнопку <strong>«Установить»</strong> или <strong>«Скачать»</strong> на странице сайта для запуска процесса получения конфигурационного файла.</p>
+          <h3 class="step-title">Название третьего шага</h3>
+          <p class="step-text">Текст указания для третьего шага инструкции.</p>
+          <img class="step-image" src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='500' height='300'><rect width='100%' height='100%' fill='%23101213'/></svg>" alt="Шаг 3" />
         </div>
 
         <!-- Шаг 4 -->
         <div class="step-card">
           <div class="step-number">Шаг 4</div>
-          <h3 class="step-title">Разрешение на скачивание</h3>
-          <p class="step-text">Во всплывающем системном окне запроса Safari нажмите кнопку <strong>«Разрешить»</strong>, чтобы подтвердить загрузку профиля конфигурации.</p>
+          <h3 class="step-title">Название четвертого шага</h3>
+          <p class="step-text">Текст указания для четвертого шага инструкции.</p>
+          <img class="step-image" src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='500' height='300'><rect width='100%' height='100%' fill='%23101213'/></svg>" alt="Шаг 4" />
         </div>
 
         <!-- Шаг 5 -->
         <div class="step-card">
           <div class="step-number">Шаг 5</div>
-          <h3 class="step-title">Закрытие уведомления</h3>
-          <p class="step-text">После успешного завершения скачивания появится уведомление «Профиль загружен». Нажмите кнопку <strong>«Закрыть»</strong>.</p>
+          <h3 class="step-title">Название пятого шага</h3>
+          <p class="step-text">Текст указания для пятого шага инструкции.</p>
+          <img class="step-image" src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='500' height='300'><rect width='100%' height='100%' fill='%23101213'/></svg>" alt="Шаг 5" />
         </div>
 
         <!-- Шаг 6 -->
         <div class="step-card">
           <div class="step-number">Шаг 6</div>
-          <h3 class="step-title">Переход в Настройки</h3>
-          <p class="step-text">Выйдите на главный экран iPhone, найдите и откройте стандартное приложение <strong>«Настройки»</strong>.</p>
+          <h3 class="step-title">Название шестого шага</h3>
+          <p class="step-text">Текст указания для шестого шага инструкции.</p>
+          <img class="step-image" src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='500' height='300'><rect width='100%' height='100%' fill='%23101213'/></svg>" alt="Шаг 6" />
         </div>
 
         <!-- Шаг 7 -->
         <div class="step-card">
           <div class="step-number">Шаг 7</div>
-          <h3 class="step-title">Поиск загруженного профиля</h3>
-          <p class="step-text">В самом верху главного меню настроек найдите и выберите появившийся пункт <strong>«Профиль загружен»</strong>.</p>
+          <h3 class="step-title">Название седьмого шага</h3>
+          <p class="step-text">Текст указания для седьмого шага инструкции.</p>
+          <img class="step-image" src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='500' height='300'><rect width='100%' height='100%' fill='%23101213'/></svg>" alt="Шаг 7" />
         </div>
 
         <!-- Шаг 8 -->
         <div class="step-card">
           <div class="step-number">Шаг 8</div>
-          <h3 class="step-title">Начало установки профиля</h3>
-          <p class="step-text">В правом верхнем углу открывшегося окна управления профилем нажмите синюю кнопку <strong>«Установить»</strong>.</p>
+          <h3 class="step-title">Название восьмого шага</h3>
+          <p class="step-text">Текст указания для восьмого шага инструкции.</p>
+          <img class="step-image" src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='500' height='300'><rect width='100%' height='100%' fill='%23101213'/></svg>" alt="Шаг 8" />
         </div>
 
         <!-- Шаг 9 -->
         <div class="step-card">
           <div class="step-number">Шаг 9</div>
-          <h3 class="step-title">Ввод пароля разблокировки</h3>
-          <p class="step-text">Введите ваш персональный <strong>код-пароль</strong> от iPhone для подтверждения прав администратора на установку сертификата.</p>
+          <h3 class="step-title">Название девятого шага</h3>
+          <p class="step-text">Текст указания для девятого шага инструкции.</p>
+          <img class="step-image" src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='500' height='300'><rect width='100%' height='100%' fill='%23101213'/></svg>" alt="Шаг 9" />
         </div>
 
         <!-- Шаг 10 -->
         <div class="step-card">
           <div class="step-number">Шаг 10</div>
-          <h3 class="step-title">Финальное подтверждение</h3>
-          <p class="step-text">Еще раз нажмите кнопку <strong>«Установить»</strong> в верхнем правом углу, а затем подтвердите действие в нижней части экрана.</p>
+          <h3 class="step-title">Название десятого шага</h3>
+          <p class="step-text">Текст указания для десятого шага инструкции.</p>
+          <img class="step-image" src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='500' height='300'><rect width='100%' height='100%' fill='%23101213'/></svg>" alt="Шаг 10" />
         </div>
 
         <!-- Шаг 11 -->
         <div class="step-card">
           <div class="step-number">Шаг 11</div>
-          <h3 class="step-title">Завершение настройки</h3>
-          <p class="step-text">После успешной инсталляции нажмите кнопку <strong>«Готово»</strong>. Начнется автоматическая фоновая загрузка самого приложения на рабочий стол.</p>
+          <h3 class="step-title">Название одиннадцатого шага</h3>
+          <p class="step-text">Текст указания для одиннадцатого шага инструкции.</p>
+          <img class="step-image" src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='500' height='300'><rect width='100%' height='100%' fill='%23101213'/></svg>" alt="Шаг 11" />
         </div>
 
         <!-- Шаг 12 -->
         <div class="step-card">
           <div class="step-number">Шаг 12</div>
-          <h3 class="step-title">Запуск приложения</h3>
-          <p class="step-text">Дождитесь появления иконки приложения на домашнем экране. Нажмите на нее для первого запуска и начала работы.</p>
-          <div class="warning-block">
-            Если появится ошибка «Ненадежный корпоративный разработчик», перейдите в Настройки → Основные → VPN и управление устройством, выберите разработчика и нажмите «Доверять».
-          </div>
+          <h3 class="step-title">Название двенадцатого шага</h3>
+          <p class="step-text">Текст указания для двенадцатого шага инструкции.</p>
+          <img class="step-image" src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='500' height='300'><rect width='100%' height='100%' fill='%23101213'/></svg>" alt="Шаг 12" />
         </div>
       </div>
     </div>
 
   </body>
-</html>
