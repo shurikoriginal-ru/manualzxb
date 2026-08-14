@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#0b0c0d" />
-    <title>Инструкция по установке приложений на iPhone — ВашеИмя Apps</title>
-    <meta name="description" content="Пошаговая инструкция по установке приложений на iPhone от ВашеИмя Apps." />
+    <title>Инструкция по установке приложений на iPhone</title>
+    <meta name="description" content="Пошаговая инструкция по установке приложений на iPhone." />
 
     <style>
       :root {
@@ -70,16 +70,31 @@
       header {
         text-align: center;
         margin-bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
 
-      h1 {
-        font-size: 28px;
-        margin: 0 0 10px 0;
+      /* Блок под картинку (Иконку приложения) */
+      .app-icon {
+        width: 130px;
+        height: 130px;
+        border-radius: 30px;
+        margin-bottom: 24px;
+        object-fit: cover;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        user-select: none;
+        -webkit-user-drag: none;
+        background: var(--panel-2); /* Флбэк на случай отсутствия картинки */
       }
 
       .description {
         color: var(--muted);
         margin: 0;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.4;
       }
 
       .step-list {
@@ -137,7 +152,8 @@
 
     <div class="wrapper">
       <header>
-        <h1>ВашеИмя Apps</h1>
+        <!-- Место под картинку. Замените src на путь к вашей иконке (например, logo.png) -->
+        <img class="app-icon" src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='130' height='130' viewBox='0 0 130 130'><rect width='130' height='130' fill='%23101213'/></svg>" alt="App Icon" />
         <p class="description">Пошаговая инструкция по установке приложений на iPhone</p>
       </header>
 
