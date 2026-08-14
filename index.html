@@ -1,290 +1,355 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Установка приложений на iPhone</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b0c0d" />
+    <title>Инструкция по установке приложений на iPhone — ВашеИмя Apps</title>
+    <meta name="description" content="Пошаговая инструкция по установке приложений на iPhone от ВашеИмя Apps." />
+
     <style>
-        /* --- ВАШ СТИЛЬ (ПЕРЕМЕННЫЕ) --- */
-        :root {
-            --bg-color: #f5f5f7;       /* Цвет фона страницы */
-            --card-bg: #ffffff;        /* Цвет фона карточек */
-            --text-main: #1d1d1f;      /* Основной цвет текста */
-            --text-muted: #86868b;     /* Цвет подписей и шагов */
-            --accent-color: #0071e3;   /* Цвет акцентов (Apple Blue) */
-            --radius-icon: 22%;        /* Скругление иконок приложений */
-            --radius-card: 16px;       /* Скругление блоков */
-            --main-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
+      :root {
+        color-scheme: dark;
+        --bg: #0b0c0d;
+        --panel: #151718;
+        --panel-2: #101213;
+        --line: rgba(255, 255, 255, 0.11);
+        --text: #f5f7f7;
+        --muted: #9ca1a5;
+        --accent: #c8ff36;
+        --accent-soft: rgba(200, 255, 54, 0.1);
+        --warning: #ffbd59;
+        --warning-soft: rgba(255, 189, 89, 0.1);
+        --radius: 25px;
+      }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+      * { box-sizing: border-box; }
 
-        body {
-            font-family: var(--main-font);
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.4;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-        }
+      html { scroll-behavior: smooth; }
 
-        .container {
-            width: 100%;
-            max-width: 500px; /* Ограничение по ширине для мобильного интерфейса */
-        }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 86% -4%, rgba(200, 255, 54, 0.13), transparent 34rem),
+          radial-gradient(circle at -10% 24%, rgba(89, 171, 255, 0.07), transparent 30rem),
+          var(--bg);
+        color: var(--text);
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
 
-        /* Шапка */
-        .header {
-            text-align: center;
-            margin-bottom: 24px;
-            padding-top: 10px;
-        }
+      /* Тема «стекло» */
+      body.theme-glass {
+        --bg: #071017;
+        --panel: rgba(13, 28, 38, 0.84);
+        --panel-2: rgba(8, 19, 27, 0.92);
+        --line: rgba(132, 205, 255, 0.2);
+        --text: #f2fbff;
+        --muted: #91a9b8;
+        --accent: #68dcff;
+        --accent-soft: rgba(104, 220, 255, 0.13);
+        --warning: #ffd166;
+        --warning-soft: rgba(255, 209, 102, 0.09);
+        background:
+          linear-gradient(135deg, rgba(104, 220, 255, 0.08), transparent 38%),
+          radial-gradient(circle at 86% 8%, rgba(185, 167, 255, 0.17), transparent 30rem),
+          radial-gradient(circle at 0 78%, rgba(104, 220, 255, 0.1), transparent 28rem),
+          #071017;
+      }
 
-        .header h1 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
+      body.theme-glass .brand { text-transform: none; letter-spacing: 0.04em; }
+      body.theme-glass .brand-mark {
+        border-radius: 50%;
+        background: linear-gradient(145deg, rgba(104, 220, 255, 0.24), rgba(185, 167, 255, 0.13));
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 14px 36px rgba(0,0,0,0.32);
+        color: #f2fbff;
+      }
+      body.theme-glass .step, body.theme-glass .important {
+        border-radius: 18px;
+        background: linear-gradient(145deg, rgba(16, 34, 45, 0.84), rgba(8, 19, 27, 0.88));
+        backdrop-filter: blur(18px);
+      }
+      body.theme-glass .progress a:active {
+        background: linear-gradient(135deg, #68dcff, #b9a7ff);
+        color: #061018;
+      }
 
-        .header p {
-            color: var(--text-muted);
-            font-size: 15px;
-        }
+      a { color: inherit; -webkit-tap-highlight-color: transparent; text-decoration: none; }
 
-        /* Сетка приложений */
-        .apps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-            gap: 16px;
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: var(--radius-card);
-            margin-bottom: 24px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
+      .noise {
+        position: fixed;
+        inset: 0;
+        z-index: 20;
+        pointer-events: none;
+        opacity: 0.035;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+      }
 
-        .app-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            cursor: default; /* Убрали курсор-руку, потому что это не ссылка */
-        }
+      .shell {
+        width: min(100%, 860px);
+        margin: 0 auto;
+        padding: 18px 16px calc(60px + env(safe-area-inset-bottom));
+      }
 
-        .app-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: var(--radius-icon);
-            object-fit: cover;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin-bottom: 8px;
-        }
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 44px;
+        margin-bottom: 42px;
+      }
 
-        .app-name {
-            font-size: 12px;
-            font-weight: 500;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
 
-        /* Блок инструкции */
-        .instruction-section {
-            background: var(--card-bg);
-            padding: 24px;
-            border-radius: var(--radius-card);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
+      .brand-mark {
+        display: grid;
+        place-items: center;
+        width: 32px;
+        height: 32px;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        background: rgba(21, 23, 24, 0.9);
+        color: var(--accent);
+        font-size: 13px;
+        font-weight: 900;
+        overflow: hidden;
+      }
+      .brand-mark img { width: 100%; height: 100%; object-fit: cover; }
 
-        .instruction-section h2 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #e5e5ea;
-            padding-bottom: 10px;
-        }
+      .guide-badge {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .guide-badge::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 5px var(--accent-soft);
+      }
 
-        .step {
-            margin-bottom: 24px;
-        }
+      .eyebrow, .step-number {
+        color: var(--accent);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
 
-        .step:last-child {
-            margin-bottom: 0;
-        }
+      h1 {
+        max-width: 750px;
+        margin: 12px 0 15px;
+        font-size: clamp(43px, 9vw, 78px);
+        line-height: 0.95;
+        letter-spacing: -0.065em;
+      }
 
-        .step-num {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--accent-color);
-            text-transform: uppercase;
-            margin-bottom: 4px;
-            display: block;
-        }
+      .hero-copy {
+        max-width: 610px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.55;
+      }
 
-        .step-title {
-            font-size: 17px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
+      .important {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 13px;
+        margin: 30px 0 35px;
+        padding: 17px;
+        border: 1px solid rgba(255, 189, 89, 0.24);
+        border-radius: 18px;
+        background: var(--warning-soft);
+      }
+      .important-icon {
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        background: rgba(255, 189, 89, 0.12);
+        color: var(--warning);
+        font-weight: 900;
+      }
+      .important strong {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--warning);
+        font-size: 14px;
+      }
+      .important p {
+        margin: 0;
+        color: #d4c5ad;
+        font-size: 13px;
+        line-height: 1.5;
+      }
 
-        .step-text {
-            font-size: 15px;
-            color: var(--text-main);
-            margin-bottom: 12px;
-        }
+      .progress {
+        display: flex;
+        gap: 7px;
+        margin: 0 0 35px;
+        padding: 5px 0 10px;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+      .progress::-webkit-scrollbar { display: none; }
+      .progress a {
+        display: grid;
+        flex: 0 0 auto;
+        place-items: center;
+        width: 35px;
+        height: 35px;
+        border: 1px solid var(--line);
+        border-radius: 11px;
+        background: rgba(21, 23, 24, 0.8);
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+        transition: background 0.2s, color 0.2s;
+      }
+      .progress a:hover { border-color: var(--accent); }
+      .progress a:active {
+        background: var(--accent);
+        color: #0b0c0d;
+      }
 
-        .step-image {
-            width: 100%;
-            border-radius: 12px;
-            border: 1px solid #e5e5ea;
-            display: block;
-        }
+      .steps {
+        display: grid;
+        gap: 24px;
+      }
+
+      .step {
+        scroll-margin-top: 16px;
+        overflow: hidden;
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: linear-gradient(145deg, rgba(26, 28, 30, 0.97), rgba(16, 18, 19, 0.97));
+      }
+      .step h2 {
+        margin: 9px 0 8px;
+        font-size: clamp(24px, 5vw, 31px);
+        line-height: 1.08;
+        letter-spacing: -0.04em;
+      }
+      .step-copy {
+        max-width: 650px;
+        margin: 0 0 20px;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.55;
+      }
+      .step-copy strong { color: var(--text); }
+
+      .shot-link {
+        display: block;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: #050606;
+      }
+      .shot-link img {
+        display: block;
+        width: 100%;
+        max-height: 680px;
+        object-fit: contain;
+        background: #000;
+      }
+      .shot-caption {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 14px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      @media (max-width: 620px) {
+        .shell { padding-inline: 12px; }
+        .topbar { margin-bottom: 34px; }
+        .step { padding: 19px; }
+        .shot-link img { max-height: none; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body class="theme-glass">
+    <div class="noise" aria-hidden="true"></div>
 
-<div class="container">
+    <main class="shell">
+      <header class="topbar">
+        <a href="#" class="brand">
+          <div class="brand-mark">
+            <!-- Сюда можно вставить логотип -->
+            <img src="logo.png" alt="Логотип" onerror="this.style.display='none'; this.parentNode.innerText='V'" />
+          </div>
+          <span>ВашеИмя Apps</span>
+        </a>
+        <div class="guide-badge">Инструкция</div>
+      </header>
 
-    <!-- Шапка сайта -->
-    <header class="header">
-        <h1>Установка приложений на iPhone</h1>
-        <p>Инструкция по установке приложений через профиль конфигурации</p>
-    </header>
+      <section>
+        <span class="eyebrow">Установка на iPhone / 12 шагов</span>
+        <h1>Приступим к установке приложения</h1>
+        <p class="hero-copy">Выполняйте шаги по порядку. Обычно весь процесс занимает несколько минут.</p>
 
-    <!-- Сетка с иконками приложений (только для наглядности, без ссылок) -->
-    <div class="apps-grid">
-        <!-- Приложение 1 -->
-        <div class="app-item">
-            <img src="app1.png" alt="MAX" class="app-icon">
-            <div class="app-name">MAX</div>
-        </div>
+        <aside class="important">
+          <span class="important-icon">!</span>
+          <div>
+            <strong>Выходим только из App Store</strong>
+            <p>Не выходите из iCloud в настройках iPhone. Ваши фото, контакты и другие данные останутся на месте.</p>
+          </div>
+        </aside>
 
-        <!-- Приложение 2 -->
-        <div class="app-item">
-            <img src="app2.png" alt="Т-Банк" class="app-icon">
-            <div class="app-name">Т-Банк</div>
-        </div>
+        <nav class="progress" aria-label="Навигация по шагам">
+          <a href="#step-1">1</a>
+          <a href="#step-2">2</a>
+          <a href="#step-3">3</a>
+          <a href="#step-4">4</a>
+          <a href="#step-5">5</a>
+          <a href="#step-6">6</a>
+          <a href="#step-7">7</a>
+          <a href="#step-8">8</a>
+          <a href="#step-9">9</a>
+          <a href="#step-10">10</a>
+          <a href="#step-11">11</a>
+          <a href="#step-12">12</a>
+        </nav>
+      </section>
 
-        <!-- Приложение 3 -->
-        <div class="app-item">
-            <img src="app3.png" alt="СБЕР" class="app-icon">
-            <div class="app-name">СБЕР</div>
-        </div>
-
-        <!-- Приложение 4 -->
-        <div class="app-item">
-            <img src="app4.png" alt="Авито" class="app-icon">
-            <div class="app-name">Авито</div>
-        </div>
-    </div>
-
-    <!-- Раздел с пошаговой инструкцией (12 шагов) -->
-    <section class="instruction-section">
-        <h2>Пошаговая инструкция</h2>
+      <section class="steps">
 
         <!-- Шаг 1 -->
-        <div class="step">
-            <span class="step-num">Шаг 1</span>
-            <div class="step-title">Откройте Safari на iPhone</div>
-            <p class="step-text">Убедитесь, что вы используете именно браузер Safari — другие браузеры не смогут корректно обработать профиль конфигурации.</p>
-            <img src="step1.jpg" alt="Иллюстрация шага 1" class="step-image">
-        </div>
+        <article class="step" id="step-1">
+          <span class="step-number">Шаг 1</span>
+          <h2>Откройте Настройки</h2>
+          <p class="step-copy">Найдите серую иконку Настроек на экране iPhone и откройте приложение.</p>
+          <a class="shot-link" href="#" target="_blank">
+            <img src="img/step-1.jpg" alt="Иконка Настроек" onerror="this.style.opacity=0.3; this.style.borderRadius='8px'" />
+            <div class="shot-caption"><span>Иконка «Настройки»</span><span>Нажмите для открытия</span></div>
+          </a>
+        </article>
 
         <!-- Шаг 2 -->
-        <div class="step">
-            <span class="step-num">Шаг 2</span>
-            <div class="step-title">Перейдите на страницу установки</div>
-            <p class="step-text">Введите адрес страницы в адресной строке Safari и дождитесь полной загрузки страницы.</p>
-            <img src="step2.jpg" alt="Иллюстрация шага 2" class="step-image">
-        </div>
-
-        <!-- Шаг 3 -->
-        <div class="step">
-            <span class="step-num">Шаг 3</span>
-            <div class="step-title">Найдите нужное приложение</div>
-            <p class="step-text">В сетке приложений найдите иконку программы, которую хотите установить, и обратите внимание на описание.</p>
-            <img src="step3.jpg" alt="Иллюстрация шага 3" class="step-image">
-        </div>
-
-        <!-- Шаг 4 -->
-        <div class="step">
-            <span class="step-num">Шаг 4</span>
-            <div class="step-title">Нажмите на кнопку «Установить»</div>
-            <p class="step-text">На странице приложения нажмите кнопку «Установить». Если кнопки нет — проверьте, что вы зашли с iPhone в Safari.</p>
-            <img src="step4.jpg" alt="Иллюстрация шага 4" class="step-image">
-        </div>
-
-        <!-- Шаг 5 -->
-        <div class="step">
-            <span class="step-num">Шаг 5</span>
-            <div class="step-title">Подтвердите переход в «Настройки»</div>
-            <p class="step-text">Браузер предложит открыть «Настройки» для установки профиля конфигурации. Нажмите «Разрешить» или «Открыть».</p>
-            <img src="step5.jpg" alt="Иллюстрация шага 5" class="step-image">
-        </div>
-
-        <!-- Шаг 6 -->
-        <div class="step">
-            <span class="step-num">Шаг 6</span>
-            <div class="step-title">Перейдите в «Профили» в Настройках</div>
-            <p class="step-text">В «Настройках» откройте раздел «Основные» и выберите пункт «Профили» (или «Профили и управление устройством»).</p>
-            <img src="step6.jpg" alt="Иллюстрация шага 6" class="step-image">
-        </div>
-
-        <!-- Шаг 7 -->
-        <div class="step">
-            <span class="step-num">Шаг 7</span>
-            <div class="step-title">Выберите профиль для установки</div>
-            <p class="step-text">В списке профилей найдите тот, который только что загрузили (обычно он отображается вверху списка).</p>
-            <img src="step7.jpg" alt="Иллюстрация шага 7" class="step-image">
-        </div>
-
-        <!-- Шаг 8 -->
-        <div class="step">
-            <span class="step-num">Шаг 8</span>
-            <div class="step-title">Нажмите «Установить» в профиле</div>
-            <p class="step-text">Внутри карточки профиля нажмите кнопку «Установить», чтобы начать процесс добавления конфигурации на устройство.</p>
-            <img src="step8.jpg" alt="Иллюстрация шага 8" class="step-image">
-        </div>
-
-        <!-- Шаг 9 -->
-        <div class="step">
-            <span class="step-num">Шаг 9</span>
-            <div class="step-title">Введите код‑пароль при необходимости</div>
-            <p class="step-text">Если iPhone защищён код‑паролем, система попросит его ввести для подтверждения установки профиля.</p>
-            <img src="step9.jpg" alt="Иллюстрация шага 9" class="step-image">
-        </div>
-
-        <!-- Шаг 10 -->
-        <div class="step">
-            <span class="step-num">Шаг 10</span>
-            <div class="step-title">Примите условия при появлении запроса</div>
-            <p class="step-text">При необходимости подтвердите согласие с условиями установки профиля, следуя подсказкам на экране.</p>
-            <img src="step10.jpg" alt="Иллюстрация шага 10" class="step-image">
-        </div>
-
-        <!-- Шаг 11 -->
-        <div class="step">
-            <span class="step-num">Шаг 11</span>
-            <div class="step-title">Дождитесь завершения установки</div>
-            <p class="step-text">После успешной установки профиля появится сообщение «Профиль установлен». Закройте «Настройки».</p>
-            <img src="step11.jpg" alt="Иллюстрация шага 11" class="step-image">
-        </div>
-
-        <!-- Шаг 12 -->
-        <div class="step">
-            <span class="step-num">Шаг 12</span>
-            <div class="step-title">Проверьте иконку на рабочем столе</div>
-            <p class="step-text">Вернитесь на главный экран iPhone — иконка приложения должна появиться там. При первом запуске может потребоваться дополнительная авторизация.</p>
-            <img src="step12.jpg" alt="Иллюстрация шага 12" class="step-image">
-        </div>
-    </section>
-</div>
-
-</body>
-</html>
+        <article class="step" id="step-2">
+          <span class="step-number">Шаг 2</span>
+          <h2>Перейдите в профиль</h2>
+          <p class="step-copy">Нажмите на первый баннер
