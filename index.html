@@ -37,6 +37,10 @@
         color: var(--text);
         font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
         -webkit-font-smoothing: antialiased;
+        padding: 40px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
 
       /* Тема «стекло» */
@@ -55,301 +59,177 @@
           linear-gradient(135deg, rgba(104, 220, 255, 0.08), transparent 38%),
           radial-gradient(circle at 86% 8%, rgba(185, 167, 255, 0.17), transparent 30rem),
           radial-gradient(circle at 0 78%, rgba(104, 220, 255, 0.1), transparent 28rem),
-          #071017;
+          var(--bg);
       }
 
-      body.theme-glass .brand { text-transform: none; letter-spacing: 0.04em; }
-      body.theme-glass .brand-mark {
-        border-radius: 50%;
-        background: linear-gradient(145deg, rgba(104, 220, 255, 0.24), rgba(185, 167, 255, 0.13));
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 14px 36px rgba(0,0,0,0.32);
-        color: #f2fbff;
-      }
-      body.theme-glass .step, body.theme-glass .important {
-        border-radius: 18px;
-        background: linear-gradient(145deg, rgba(16, 34, 45, 0.84), rgba(8, 19, 27, 0.88));
-        backdrop-filter: blur(18px);
-      }
-      body.theme-glass .progress a:active {
-        background: linear-gradient(135deg, #68dcff, #b9a7ff);
-        color: #061018;
+      .wrapper {
+        width: 100%;
+        max-width: 600px;
       }
 
-      a { color: inherit; -webkit-tap-highlight-color: transparent; text-decoration: none; }
-
-      .noise {
-        position: fixed;
-        inset: 0;
-        z-index: 20;
-        pointer-events: none;
-        opacity: 0.035;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
-      }
-
-      .shell {
-        width: min(100%, 860px);
-        margin: 0 auto;
-        padding: 18px 16px calc(60px + env(safe-area-inset-bottom));
-      }
-
-      .topbar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        min-height: 44px;
-        margin-bottom: 42px;
-      }
-
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 13px;
-        font-weight: 800;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-      }
-
-      .brand-mark {
-        display: grid;
-        place-items: center;
-        width: 32px;
-        height: 32px;
-        border: 1px solid var(--line);
-        border-radius: 9px;
-        background: rgba(21, 23, 24, 0.9);
-        color: var(--accent);
-        font-size: 13px;
-        font-weight: 900;
-        overflow: hidden;
-      }
-      .brand-mark img { width: 100%; height: 100%; object-fit: cover; }
-
-      .guide-badge {
-        display: flex;
-        align-items: center;
-        gap: 7px;
-        color: var(--muted);
-        font-size: 12px;
-      }
-      .guide-badge::before {
-        content: "";
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: var(--accent);
-        box-shadow: 0 0 0 5px var(--accent-soft);
-      }
-
-      .eyebrow, .step-number {
-        color: var(--accent);
-        font-size: 11px;
-        font-weight: 800;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
+      header {
+        text-align: center;
+        margin-bottom: 40px;
       }
 
       h1 {
-        max-width: 750px;
-        margin: 12px 0 15px;
-        font-size: clamp(43px, 9vw, 78px);
-        line-height: 0.95;
-        letter-spacing: -0.065em;
+        font-size: 28px;
+        margin: 0 0 10px 0;
       }
 
-      .hero-copy {
-        max-width: 610px;
-        margin: 0;
+      .description {
         color: var(--muted);
-        font-size: 17px;
-        line-height: 1.55;
+        margin: 0;
       }
 
-      .important {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        gap: 13px;
-        margin: 30px 0 35px;
-        padding: 17px;
-        border: 1px solid rgba(255, 189, 89, 0.24);
-        border-radius: 18px;
-        background: var(--warning-soft);
+      .step-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
       }
-      .important-icon {
-        display: grid;
-        place-items: center;
-        width: 34px;
-        height: 34px;
-        border-radius: 10px;
-        background: rgba(255, 189, 89, 0.12);
-        color: var(--warning);
-        font-weight: 900;
+
+      .step-card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 24px;
       }
-      .important strong {
-        display: block;
-        margin-bottom: 4px;
-        color: var(--warning);
+
+      .step-number {
+        color: var(--accent);
+        background: var(--accent-soft);
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 12px;
         font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 12px;
       }
-      .important p {
+
+      .step-title {
+        font-size: 18px;
+        margin: 0 0 8px 0;
+      }
+
+      .step-text {
+        color: var(--muted);
         margin: 0;
-        color: #d4c5ad;
-        font-size: 13px;
+        font-size: 15px;
         line-height: 1.5;
       }
 
-      .progress {
-        display: flex;
-        gap: 7px;
-        margin: 0 0 35px;
-        padding: 5px 0 10px;
-        overflow-x: auto;
-        scrollbar-width: none;
-      }
-      .progress::-webkit-scrollbar { display: none; }
-      .progress a {
-        display: grid;
-        flex: 0 0 auto;
-        place-items: center;
-        width: 35px;
-        height: 35px;
-        border: 1px solid var(--line);
-        border-radius: 11px;
-        background: rgba(21, 23, 24, 0.8);
-        color: var(--muted);
-        font-size: 12px;
-        font-weight: 800;
-        transition: background 0.2s, color 0.2s;
-      }
-      .progress a:hover { border-color: var(--accent); }
-      .progress a:active {
-        background: var(--accent);
-        color: #0b0c0d;
+      .step-text strong {
+        color: var(--text);
       }
 
-      .steps {
-        display: grid;
-        gap: 24px;
-      }
-
-      .step {
-        scroll-margin-top: 16px;
-        overflow: hidden;
-        padding: 24px;
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        background: linear-gradient(145deg, rgba(26, 28, 30, 0.97), rgba(16, 18, 19, 0.97));
-      }
-      .step h2 {
-        margin: 9px 0 8px;
-        font-size: clamp(24px, 5vw, 31px);
-        line-height: 1.08;
-        letter-spacing: -0.04em;
-      }
-      .step-copy {
-        max-width: 650px;
-        margin: 0 0 20px;
-        color: var(--muted);
-        font-size: 15px;
-        line-height: 1.55;
-      }
-      .step-copy strong { color: var(--text); }
-
-      .shot-link {
-        display: block;
-        overflow: hidden;
-        border: 1px solid var(--line);
-        border-radius: 20px;
-        background: #050606;
-      }
-      .shot-link img {
-        display: block;
-        width: 100%;
-        max-height: 680px;
-        object-fit: contain;
-        background: #000;
-      }
-      .shot-caption {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        padding: 12px 14px;
-        border-top: 1px solid var(--line);
-        color: var(--muted);
-        font-size: 12px;
-      }
-
-      @media (max-width: 620px) {
-        .shell { padding-inline: 12px; }
-        .topbar { margin-bottom: 34px; }
-        .step { padding: 19px; }
-        .shot-link img { max-height: none; }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        html { scroll-behavior: auto; }
+      .warning-block {
+        margin-top: 12px;
+        background: var(--warning-soft);
+        border: 1px solid var(--warning);
+        border-radius: 12px;
+        padding: 12px;
+        color: var(--warning);
+        font-size: 14px;
       }
     </style>
   </head>
-  <body class="theme-glass">
-    <div class="noise" aria-hidden="true"></div>
+  <body>
 
-    <main class="shell">
-      <header class="topbar">
-        <a href="#" class="brand">
-          <div class="brand-mark">
-            <!-- Сюда можно вставить логотип -->
-            <img src="logo.png" alt="Логотип" onerror="this.style.display='none'; this.parentNode.innerText='V'" />
-          </div>
-          <span>ВашеИмя Apps</span>
-        </a>
-        <div class="guide-badge">Инструкция</div>
+    <div class="wrapper">
+      <header>
+        <h1>ВашеИмя Apps</h1>
+        <p class="description">Пошаговая инструкция по установке приложений на iPhone</p>
       </header>
 
-      <section>
-        <span class="eyebrow">Установка на iPhone / 12 шагов</span>
-        <h1>Приступим к установке приложения</h1>
-        <p class="hero-copy">Выполняйте шаги по порядку. Обычно весь процесс занимает несколько минут.</p>
-
-        <aside class="important">
-          <span class="important-icon">!</span>
-          <div>
-            <strong>Выходим только из App Store</strong>
-            <p>Не выходите из iCloud в настройках iPhone. Ваши фото, контакты и другие данные останутся на месте.</p>
-          </div>
-        </aside>
-
-        <nav class="progress" aria-label="Навигация по шагам">
-          <a href="#step-1">1</a>
-          <a href="#step-2">2</a>
-          <a href="#step-3">3</a>
-          <a href="#step-4">4</a>
-          <a href="#step-5">5</a>
-          <a href="#step-6">6</a>
-          <a href="#step-7">7</a>
-          <a href="#step-8">8</a>
-          <a href="#step-9">9</a>
-          <a href="#step-10">10</a>
-          <a href="#step-11">11</a>
-          <a href="#step-12">12</a>
-        </nav>
-      </section>
-
-      <section class="steps">
-
+      <div class="step-list">
         <!-- Шаг 1 -->
-        <article class="step" id="step-1">
-          <span class="step-number">Шаг 1</span>
-          <h2>Откройте Настройки</h2>
-          <p class="step-copy">Найдите серую иконку Настроек на экране iPhone и откройте приложение.</p>
-          <a class="shot-link" href="#" target="_blank">
-            <img src="img/step-1.jpg" alt="Иконка Настроек" onerror="this.style.opacity=0.3; this.style.borderRadius='8px'" />
-            <div class="shot-caption"><span>Иконка «Настройки»</span><span>Нажмите для открытия</span></div>
-          </a>
-        </article>
+        <div class="step-card">
+          <div class="step-number">Шаг 1</div>
+          <h3 class="step-title">Подготовка устройства</h3>
+          <p class="step-text">Убедитесь, что ваш iPhone подключен к стабильной сети Wi-Fi или сотовой сети, а заряд аккумулятора составляет не менее 20%.</p>
+        </div>
 
         <!-- Шаг 2 -->
-        <article class="step" id="step-2">
-          <span class="step-number">Шаг 2</span>
-          <h2>Перейдите в профиль</h2>
-          <p class="step-copy">Нажмите на первый баннер
+        <div class="step-card">
+          <div class="step-number">Шаг 2</div>
+          <h3 class="step-title">Переход по ссылке</h3>
+          <p class="step-text">Откройте стандартный браузер <strong>Safari</strong> на вашем iPhone и перейдите на страницу загрузки полученного приложения.</p>
+        </div>
+
+        <!-- Шаг 3 -->
+        <div class="step-card">
+          <div class="step-number">Шаг 3</div>
+          <h3 class="step-title">Инициация загрузки</h3>
+          <p class="step-text">Нажмите на кнопку <strong>«Установить»</strong> или <strong>«Скачать»</strong> на странице сайта для запуска процесса получения конфигурационного файла.</p>
+        </div>
+
+        <!-- Шаг 4 -->
+        <div class="step-card">
+          <div class="step-number">Шаг 4</div>
+          <h3 class="step-title">Разрешение на скачивание</h3>
+          <p class="step-text">Во всплывающем системном окне запроса Safari нажмите кнопку <strong>«Разрешить»</strong>, чтобы подтвердить загрузку профиля конфигурации.</p>
+        </div>
+
+        <!-- Шаг 5 -->
+        <div class="step-card">
+          <div class="step-number">Шаг 5</div>
+          <h3 class="step-title">Закрытие уведомления</h3>
+          <p class="step-text">После успешного завершения скачивания появится уведомление «Профиль загружен». Нажмите кнопку <strong>«Закрыть»</strong>.</p>
+        </div>
+
+        <!-- Шаг 6 -->
+        <div class="step-card">
+          <div class="step-number">Шаг 6</div>
+          <h3 class="step-title">Переход в Настройки</h3>
+          <p class="step-text">Выйдите на главный экран iPhone, найдите и откройте стандартное приложение <strong>«Настройки»</strong>.</p>
+        </div>
+
+        <!-- Шаг 7 -->
+        <div class="step-card">
+          <div class="step-number">Шаг 7</div>
+          <h3 class="step-title">Поиск загруженного профиля</h3>
+          <p class="step-text">В самом верху главного меню настроек найдите и выберите появившийся пункт <strong>«Профиль загружен»</strong>.</p>
+        </div>
+
+        <!-- Шаг 8 -->
+        <div class="step-card">
+          <div class="step-number">Шаг 8</div>
+          <h3 class="step-title">Начало установки профиля</h3>
+          <p class="step-text">В правом верхнем углу открывшегося окна управления профилем нажмите синюю кнопку <strong>«Установить»</strong>.</p>
+        </div>
+
+        <!-- Шаг 9 -->
+        <div class="step-card">
+          <div class="step-number">Шаг 9</div>
+          <h3 class="step-title">Ввод пароля разблокировки</h3>
+          <p class="step-text">Введите ваш персональный <strong>код-пароль</strong> от iPhone для подтверждения прав администратора на установку сертификата.</p>
+        </div>
+
+        <!-- Шаг 10 -->
+        <div class="step-card">
+          <div class="step-number">Шаг 10</div>
+          <h3 class="step-title">Финальное подтверждение</h3>
+          <p class="step-text">Еще раз нажмите кнопку <strong>«Установить»</strong> в верхнем правом углу, а затем подтвердите действие в нижней части экрана.</p>
+        </div>
+
+        <!-- Шаг 11 -->
+        <div class="step-card">
+          <div class="step-number">Шаг 11</div>
+          <h3 class="step-title">Завершение настройки</h3>
+          <p class="step-text">После успешной инсталляции нажмите кнопку <strong>«Готово»</strong>. Начнется автоматическая фоновая загрузка самого приложения на рабочий стол.</p>
+        </div>
+
+        <!-- Шаг 12 -->
+        <div class="step-card">
+          <div class="step-number">Шаг 12</div>
+          <h3 class="step-title">Запуск приложения</h3>
+          <p class="step-text">Дождитесь появления иконки приложения на домашнем экране. Нажмите на нее для первого запуска и начала работы.</p>
+          <div class="warning-block">
+            Если появится ошибка «Ненадежный корпоративный разработчик», перейдите в Настройки → Основные → VPN и управление устройством, выберите разработчика и нажмите «Доверять».
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
